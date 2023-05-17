@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+    <style>
+        h1{
+            /* border: solid black 1px; */
+            width: 225px;
+            margin: auto;
+            margin-top: 25px;
+            margin-bottom: 50px;
+            justify-content: center;
+        }
+        .main_container{
+            /* border: solid red 1px; */
+            display: flex;
+            justify-content: center;
+            justify-content: space-between;
+            width: 500px;
+            margin: auto;
+        }
+        button{
+            margin-top: 10px;
+            margin-left: 35px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>Treasure Island</h1>
+    <div class="main_container">
+        <div class= "registration">
+            <h2 class="regTitle">Register</h2>
+            <form action="/register" method='POST'>
+                {% with messages = get_flashed_messages(category_filter=['regError']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <p class="labelname">First Name:</p> <input type="text" name="first_name" class="inputname">
+                <p class="labelname">Last Name:</p> <input type="text" name= "last_name" class="inputname">
+                <p class="labelname">Email:</p> <input type="text" name= "email" class="inputname">
+                <p class="labelname">Password:</p> <input type="password" name= "password" class="inputname">
+                <p class="labelname">Confirm Password:</p> <input type="password" name= "passConf" class="inputname">
+                <div>
+                    <button class="regBtn">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="login">
+            <h2 class="logTitle">Login</h2>
+            <form action="/login" method="POST">
+                {% with messages = get_flashed_messages(category_filter=['loginError']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <p class="labelname">Email:</p> <input type="text" name="email" class="inputname">
+                <p class="labelname">Password:</p> <input type="password" name= "password" class="inputname">
+                <div>
+                    <button class="logBtn">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sighting Share</title>
+    <!Bootstrap CSS -->
+
