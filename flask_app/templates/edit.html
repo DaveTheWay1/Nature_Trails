@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+    <style>
+        .links{
+            border: solid black 1px;
+            display: flex;
+            width: 500px;
+            justify-content: space-between;
+            margin: auto;
+            margin-top: 15px;
+        }
+        h1 {
+            border: solid black 1px;
+            width: 475px;
+            margin: auto;
+            margin-bottom: 15px;
+            text-align: center; 
+        }
+    
+        .links {
+            border: solid black 1px;
+            width: 500px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-container {
+            border: solid black 1px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 500px;
+            margin: auto;
+            margin-top: 25px;
+        }
+        button{
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Make Changes To Your Adventures!</h1>
+    <div class="links">
+        <div>
+            <a href="/create/post" method="post">Post a Location</a>
+        </div>
+        <div>
+            <a href="/myposts">My Posts</a>
+        </div>
+        <div>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="container">
+            <h2>Your Adventure!</h2>
+            <form action="/edit/post/{{ post.id }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id" value={{post.id}}>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %} 
+                    <div class="mb-3">
+                        <label for="location_name" class="form-label">Location:</label><br/>
+                        <input type="text" name="location_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="img" class="form-label">Image:</label></br>
+                        <input type="file" name="img">
+                    </div>
+                    <div class="mb-3">
+                        <label for="review" class="form-label">Review:</label></br>
+                        <textarea name="review" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address:</label></br>
+                        <input type="text" name="address">
+                    </div> 
+                    <button type="submit">Update Post</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

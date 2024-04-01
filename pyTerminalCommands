@@ -1,0 +1,5 @@
+to install flask: pipenv install flask 
+to connect to mysql database: pipenv install pymysql
+to connect to bcrypt(for password protection): pipenv install flask-bycrpt
+to activate all the installed: pipenv shell
+to get the server running: python3 server.py
